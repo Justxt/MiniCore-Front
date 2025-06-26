@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://minicore-8hdi.onrender.com";
+const API_BASE_URL = "minicore-production.up.railway.app";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
