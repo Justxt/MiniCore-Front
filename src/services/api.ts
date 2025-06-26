@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "minicore-production.up.railway.app";
+const API_BASE_URL = "http://localhost:3000";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -17,11 +17,14 @@ export interface Seller {
 }
 
 export interface CommissionResult {
+  saleId: string;
   sellerId: string;
   sellerName: string;
-  totalSales: number;
-  totalCommission: number;
-  salesCount: number;
+  saleDate: string;
+  amount: number;
+  rule: string;
+  percentage: number;
+  commission: number;
 }
 
 export interface CreateSellerDto {

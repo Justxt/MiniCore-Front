@@ -27,7 +27,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
           <thead className="bg-gray-50">
             <tr className="text-center">
               <th className="px-6 py-3">Vendedor</th>
-              <th className="px-6 py-3">Cantidad de Ventas</th>
+              <th className="px-6 py-3">Fecha Venta</th>
               <th className="px-6 py-3">Total Ventas</th>
               <th className="px-6 py-3">Comisión</th>
               <th className="px-6 py-3">% Comisión</th>
@@ -35,28 +35,21 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
           </thead>
           <tbody className="divide-y divide-gray-200">
             {commissions.map((commission) => (
-              <tr key={commission.sellerId} className="hover:bg-gray-50">
+              <tr key={commission.saleId} className="hover:bg-gray-50">
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
                   {commission.sellerName}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                  {commission.salesCount || 0}
+                  {new Date(commission.saleDate).toLocaleDateString()}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                  ${(commission.totalSales || 0).toFixed(2)}
+                  ${(commission.amount || 0).toFixed(2)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-smfont-semibold text-red-600 text-center">
-                  ${(commission.totalCommission || 0).toFixed(2)}
+                  ${(commission.commission || 0).toFixed(2)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                  {(commission.totalSales || 0) > 0
-                    ? (
-                        ((commission.totalCommission || 0) /
-                          (commission.totalSales || 1)) *
-                        100
-                      ).toFixed(2)
-                    : "0.00"}
-                  %
+                  {(commission.percentage * 100).toFixed(2)}%
                 </td>
               </tr>
             ))}

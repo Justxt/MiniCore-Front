@@ -24,14 +24,8 @@ export function useCommissions(filter: CommissionFilterDto) {
       };
 
       const response = await commissionsApi.calculate(filterData);
-      const mappedData = response.data.map((item: any) => ({
-        sellerId: item.sellerId,
-        sellerName: item.sellerName,
-        salesCount: item.totalAmount / 100,
-        totalSales: item.totalAmount,
-        totalCommission: item.commission,
-      }));
-      setState((prevState) => ({ ...prevState, commissions: mappedData }));
+
+      setState((prevState) => ({ ...prevState, commissions: response.data }));
     } catch (err) {
       setState((prevState) => ({
         ...prevState,
